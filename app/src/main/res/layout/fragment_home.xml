@@ -10,8 +10,9 @@
         android:id="@+id/nsvHome"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cdlSubmitHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -74,6 +75,8 @@
                 android:id="@+id/cdlFirstNameHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
@@ -90,13 +93,12 @@
                     <AutoCompleteTextView
                         android:id="@+id/actvFirstNameHome"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:autofillHints="@string/first_name"
                         android:gravity="start|center_vertical"
                         android:hint="@string/first_name"
-                        android:imeActionId="1"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLines="1"
@@ -118,7 +120,7 @@
                 android:id="@+id/cdlLastNameHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/v_start"
@@ -134,13 +136,12 @@
                     <AutoCompleteTextView
                         android:id="@+id/actvLastNameHome"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:autofillHints="@string/last_name"
                         android:gravity="start|center_vertical"
                         android:hint="@string/last_name"
-                        android:imeActionId="1"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLines="1"
@@ -162,7 +163,7 @@
                 android:id="@+id/cdlEmailHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/v_start"
@@ -178,13 +179,12 @@
                     <AutoCompleteTextView
                         android:id="@+id/actvEmailHome"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:autofillHints="@string/email"
                         android:gravity="start|center_vertical"
                         android:hint="@string/email"
-                        android:imeActionId="1"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
@@ -206,7 +206,7 @@
                 android:id="@+id/cdlPhoneHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/v_start"
@@ -222,13 +222,12 @@
                     <AutoCompleteTextView
                         android:id="@+id/actvPhoneHome"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:autofillHints="@string/phone"
                         android:gravity="start|center_vertical"
                         android:hint="@string/phone"
-                        android:imeActionId="1"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLines="1"
@@ -246,40 +245,148 @@
 
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-            <androidx.coordinatorlayout.widget.CoordinatorLayout
-                android:id="@+id/cdlSubmitHome"
+            <TextView
+                android:id="@+id/tvTxDetailsHome"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="42dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/v_solid"
-                android:minWidth="200dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/tx_details"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cdlPhoneHome" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glAHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/tvCurrencyGenderHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start|center_vertical"
+                android:padding="8dp"
+                android:text="@string/currency"
+                android:textColor="@color/cg0"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/glAHome"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvTxDetailsHome"
+                app:layout_constraintTop_toBottomOf="@+id/tvTxDetailsHome" />
+
+            <Spinner
+                android:id="@+id/spCurrencyHome"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:padding="8dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCurrencyGenderHome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/glAHome"
+                app:layout_constraintTop_toTopOf="@+id/tvCurrencyGenderHome" />
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/cdlAmountHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/v_start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/tvCurrencyGenderHome"
+                app:layout_constraintTop_toBottomOf="@+id/tvCurrencyGenderHome">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/tvSubmitHome"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="center"
-                        android:text="@string/submit"
-                        android:textAllCaps="true"
-                        android:textColor="@color/cw1"
-                        android:textSize="16sp"
+                    <AutoCompleteTextView
+                        android:id="@+id/actvAmountHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:autofillHints="@string/amount"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/amount"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/cg0"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0" />
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/cdlDescriptionHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/v_start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/cdlAmountHome"
+                app:layout_constraintTop_toBottomOf="@+id/cdlAmountHome">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/actvDescriptionHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:autofillHints="@string/description"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/description"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:maxLines="10"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/cg0"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -288,5 +395,45 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cdlSubmitHome"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/v_solid"
+        android:minWidth="200dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvSubmitHome"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/submit"
+                android:textAllCaps="true"
+                android:textColor="@color/cw1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
