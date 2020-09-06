@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">PesaPal Payments</string>
+    <string name="header">PesaPal</string>
 
+
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="internet_connection">No internet connection</string>
     <string name="notification">Notification</string>
     <string name="ok">OK</string>
 </resources>
