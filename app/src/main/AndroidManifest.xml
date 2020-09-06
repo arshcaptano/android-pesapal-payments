@@ -21,8 +21,7 @@
             android:name=".view.activity.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
-            android:name=".view.activity.SplashActivity"
-            android:theme="@style/AppTheme.Transparent">
+            android:name=".view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

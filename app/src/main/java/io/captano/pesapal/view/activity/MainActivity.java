@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.captano.pesapal.R;
@@ -25,6 +26,7 @@ import io.captano.pesapal.view.fragment.HomeFragment;
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
     private TextView tvNetMain;
+    private MaterialToolbar tbMain;
     private ViewPager vpMain;
     private BottomNavigationView bnvMain;
 
@@ -64,6 +66,15 @@ public class MainActivity extends AppCompatActivity {
             registerReceiver(connectionReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
         else
             registerReceiver(connectionReceiver, intentFilter);
+
+        tbMain = findViewById(R.id.tbMain);
+        setSupportActionBar(tbMain);
+
+        tbMain.setNavigationOnClickListener(v -> {
+            finish();
+
+            overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
+        });
 
         vpMain = findViewById(R.id.vpMain);
         bnvMain = findViewById(R.id.bnvMain);
@@ -110,10 +121,16 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nv_home:
-
+                        if (getSupportActionBar() != null) {
+                            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                            getSupportActionBar().setDisplayShowTitleEnabled(false);
+                        }
                         return true;
                     case R.id.nv_settings:
-
+                        if (getSupportActionBar() != null) {
+                            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                            getSupportActionBar().setDisplayShowTitleEnabled(false);
+                        }
                         return true;
                 }
 

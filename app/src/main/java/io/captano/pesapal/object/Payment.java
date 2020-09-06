@@ -9,7 +9,7 @@ public class Payment {
     private String phone;
     private String currency;
     private BigDecimal amount;
-    private String paymentDescription;
+    private String description;
 
     public String getFirstName() {
         return firstName;
@@ -59,11 +59,11 @@ public class Payment {
         this.amount = amount;
     }
 
-    public String getPaymentDescription() {
-        return paymentDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPaymentDescription(String paymentDescription) {
-        this.paymentDescription = paymentDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

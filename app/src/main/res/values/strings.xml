@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PesaPal Payments</string>
+    <string name="app_name">PesaPal</string>
     <string name="header">PesaPal</string>
 
     <string name="home">Home</string>
@@ -7,7 +7,18 @@
     <string name="internet_connection">No internet connection</string>
     <string name="notification">Notification</string>
     <string name="ok">OK</string>
+    <string name="submit">Submit</string>
 
     <string name="home_header">Hello!</string>
     <string name="home_summary">Fill in the details to make a payment using PesaPal</string>
+    <string name="my_details">My Details</string>
+    <string name="tx_details">Transaction Details</string>
+
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email Address</string>
+    <string name="phone">Phone Number</string>
+    <string name="currency">Currency</string>
+    <string name="amount">Amount</string>
+    <string name="description">Payment Description</string>
 </resources>
