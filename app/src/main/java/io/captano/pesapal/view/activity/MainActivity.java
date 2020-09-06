@@ -70,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
         tbMain = findViewById(R.id.tbMain);
         setSupportActionBar(tbMain);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+        tbMain.setVisibility(View.GONE);
+
         tbMain.setNavigationOnClickListener(v -> {
             finish();
 
@@ -116,26 +122,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setListeners() {
-        bnvMain.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nv_home:
-                        if (getSupportActionBar() != null) {
-                            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                            getSupportActionBar().setDisplayShowTitleEnabled(false);
-                        }
-                        return true;
-                    case R.id.nv_settings:
-                        if (getSupportActionBar() != null) {
-                            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                            getSupportActionBar().setDisplayShowTitleEnabled(false);
-                        }
-                        return true;
-                }
+        bnvMain.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nv_home:
+                    tbMain.setVisibility(View.GONE);
+                    return true;
+                case R.id.nv_settings:
+                    tbMain.setVisibility(View.VISIBLE);
 
-                return false;
+                    if (getSupportActionBar() != null) {
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                    }
+                    return true;
             }
+
+            return false;
         });
     }
 }
