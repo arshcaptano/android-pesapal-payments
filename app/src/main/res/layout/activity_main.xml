@@ -26,18 +26,6 @@
         tools:ignore="SmallSp"
         tools:targetApi="lollipop" />
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/tbMain"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
-        android:background="@color/cw1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNetMain"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:theme="@style/AppTheme.TransparentAppBar"/>
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpMain"
         android:layout_width="0dp"
@@ -47,7 +35,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bnvMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbMain" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNetMain" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvMain"

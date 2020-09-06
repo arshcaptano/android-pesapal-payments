@@ -8,15 +8,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.captano.pesapal.R;
@@ -25,12 +25,15 @@ import io.captano.pesapal.view.fragment.HomeFragment;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
+    private final Context context = this;
+
     private TextView tvNetMain;
-    private MaterialToolbar tbMain;
     private ViewPager vpMain;
     private BottomNavigationView bnvMain;
 
     private MainNavAdapter mainNavAdapter;
+
+    private boolean isTapOnce = false;
 
     private BroadcastReceiver connectionReceiver = new BroadcastReceiver() {
         @Override
@@ -67,21 +70,6 @@ public class MainActivity extends AppCompatActivity {
         else
             registerReceiver(connectionReceiver, intentFilter);
 
-        tbMain = findViewById(R.id.tbMain);
-        setSupportActionBar(tbMain);
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-        }
-        tbMain.setVisibility(View.GONE);
-
-        tbMain.setNavigationOnClickListener(v -> {
-            finish();
-
-            overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
-        });
-
         vpMain = findViewById(R.id.vpMain);
         bnvMain = findViewById(R.id.bnvMain);
 
@@ -96,9 +84,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (isTapOnce) {
+            // Support for 'Tap twice' to exit
+            super.onBackPressed();
 
-        overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+
+            overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
+
+            System.exit(0);
+            return;
+        }
+
+        this.isTapOnce = true;
+        Toast.makeText(context, getString(R.string.tap_exit), Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> isTapOnce = false, 2000);
     }
 
     @Override
@@ -125,15 +131,10 @@ public class MainActivity extends AppCompatActivity {
         bnvMain.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nv_home:
-                    tbMain.setVisibility(View.GONE);
+
                     return true;
                 case R.id.nv_settings:
-                    tbMain.setVisibility(View.VISIBLE);
 
-                    if (getSupportActionBar() != null) {
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                        getSupportActionBar().setDisplayShowTitleEnabled(false);
-                    }
                     return true;
             }
 
