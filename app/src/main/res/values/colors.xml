@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="cError">#FF3D00</color>
+    <color name="cw0">#FFFFFF</color>
+    <color name="cw1">#FAFAFA</color>
+    <color name="cg0">#737373</color>
+    <color name="cg1">#c1c1c1</color>
+    <color name="cb0">#000000</color>
+</resources>

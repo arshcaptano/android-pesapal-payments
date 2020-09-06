@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">PesaPal Payments</string>
+
+    <string name="notification">Notification</string>
+    <string name="ok">OK</string>
+</resources>
