@@ -1,9 +1,5 @@
-package io.captano.pesapal.view;
+package io.captano.pesapal.view.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,18 +12,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.captano.pesapal.R;
+import io.captano.pesapal.view.adapter.MainNavAdapter;
+import io.captano.pesapal.view.fragment.HomeFragment;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
-    private final Context context = this;
-    private final Activity activity = this;
-
     private TextView tvNetMain;
+    private ViewPager vpMain;
     private BottomNavigationView bnvMain;
 
+    private MainNavAdapter mainNavAdapter;
 
     private BroadcastReceiver connectionReceiver = new BroadcastReceiver() {
         @Override
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     tvNetMain.setVisibility(View.GONE);
                 else
                     tvNetMain.setVisibility(View.VISIBLE);
+
             } else {
                 tvNetMain.setVisibility(View.VISIBLE);
             }
@@ -63,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
         else
             registerReceiver(connectionReceiver, intentFilter);
 
+        vpMain = findViewById(R.id.vpMain);
         bnvMain = findViewById(R.id.bnvMain);
 
+        setViewPager();
         setListeners();
     }
 
@@ -91,6 +95,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setViewPager() {
+        mainNavAdapter = new MainNavAdapter(getSupportFragmentManager());
+
+        mainNavAdapter.addFragment(new HomeFragment());
+
+        vpMain.setAdapter(mainNavAdapter);
+    }
+
+
     private void setListeners() {
         bnvMain.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -103,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
                         return true;
                 }
+
                 return false;
             }
         });
