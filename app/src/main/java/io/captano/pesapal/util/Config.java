@@ -3,6 +3,12 @@ package io.captano.pesapal.util;
 public class Config {
     public static final String BASE_URL = "";
 
+    public static final String QUERY_PAYMENT_STATUS = BASE_URL + "";
+    public static final String QUERY_PAYMENT_DETAILS = BASE_URL + "";
+
+    // Query parameters
+    public static final String PESAPAL_NOTIFICATION_TYPE = "CHANGE";
+
     public static final int CLICK_INTERVAL = 2000;
 
     // Volley request configs

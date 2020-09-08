@@ -16,12 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".view.activity.ResultActivity"></activity>
         <activity
             android:name=".view.activity.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
-        <activity
-            android:name=".view.activity.SplashActivity">
+        <activity android:name=".view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

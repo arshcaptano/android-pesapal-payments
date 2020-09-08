@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import io.captano.pesapal.R;
 
-
 @SuppressWarnings("FieldCanBeLocal")
 public class SplashActivity extends AppCompatActivity {
     private final Context context = this;
