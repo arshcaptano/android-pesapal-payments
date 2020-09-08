@@ -1,39 +1,54 @@
 package io.captano.pesapal.view.fragment;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
+
 import java.math.BigDecimal;
 
 import io.captano.pesapal.R;
+import io.captano.pesapal.application.PreferenceManager;
 import io.captano.pesapal.object.Payment;
+import io.captano.pesapal.util.Config;
 import io.captano.pesapal.util.Util;
+import io.captano.pesapal.view.activity.ResultActivity;
+import oauth.signpost.OAuthConsumer;
+import oauth.signpost.basic.DefaultOAuthConsumer;
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
+import oauth.signpost.signature.AuthorizationHeaderSigningStrategy;
+import oauth.signpost.signature.HmacSha1MessageSigner;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class HomeFragment extends Fragment {
+
+    private final int PAYMENT_ACTIVITY_REQUEST_CODE = 1;
+
     private CoordinatorLayout cdlSubmitHome;
     private AutoCompleteTextView actvFirstNameHome;
     private AutoCompleteTextView actvLastNameHome;
     private AutoCompleteTextView actvEmailHome;
     private AutoCompleteTextView actvPhoneHome;
-    private Spinner spCurrencyHome;
+    private TextView tvCurrencyHome;
     private AutoCompleteTextView actvAmountHome;
     private AutoCompleteTextView actvDescriptionHome;
 
-    private String[] currency;
-    private String selectedCurrency;
+    private PreferenceManager preferenceManager;
+
+    private String defaultCurrency;
 
     public HomeFragment() {
     }
@@ -51,49 +66,35 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        currency = getContext().getResources().getStringArray(R.array.currency);
-
         cdlSubmitHome = view.findViewById(R.id.cdlSubmitHome);
         actvFirstNameHome = view.findViewById(R.id.actvFirstNameHome);
         actvLastNameHome = view.findViewById(R.id.actvLastNameHome);
         actvEmailHome = view.findViewById(R.id.actvEmailHome);
         actvPhoneHome = view.findViewById(R.id.actvPhoneHome);
-
-        spCurrencyHome = view.findViewById(R.id.spCurrencyHome);
-        if (currency != null) {
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, currency);
-            spCurrencyHome.setAdapter(adapter);
-        }
-
+        tvCurrencyHome = view.findViewById(R.id.tvCurrencyHome);
         actvAmountHome = view.findViewById(R.id.actvAmountHome);
         actvDescriptionHome = view.findViewById(R.id.actvDescriptionHome);
 
-        // TODO: Add views
+        preferenceManager = new PreferenceManager(getContext());
+        defaultCurrency = getPreferenceManager().getCurrency();
+        if (defaultCurrency != null)
+            tvCurrencyHome.setText(defaultCurrency);
+        else
+            tvCurrencyHome.setText("KES");
 
         setListeners();
 
         return view;
     }
 
+    public PreferenceManager getPreferenceManager() {
+        if (preferenceManager == null)
+            preferenceManager = new PreferenceManager(getContext());
+
+        return preferenceManager;
+    }
+
     private void setListeners() {
-        spCurrencyHome.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View v, int position, long id) {
-
-                try {
-                    selectedCurrency = spCurrencyHome.getSelectedItem().toString();
-                } catch (Exception e) {
-                    Util.notify(getContext(), getString(R.string.currency_required));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                selectedCurrency = currency[0];
-            }
-
-        });
-
         cdlSubmitHome.setOnClickListener(View -> {
             validate();
         });
@@ -129,11 +130,8 @@ public class HomeFragment extends Fragment {
             return;
         }
         payment.setPhone(phone);
-        payment.setPhone(phone);
 
-        if (selectedCurrency != null) {
-            payment.setCurrency(selectedCurrency);
-        }
+        payment.setCurrency(defaultCurrency);
 
         String amount = actvAmountHome.getText().toString().trim();
         if (amount.isEmpty()) {
@@ -153,22 +151,17 @@ public class HomeFragment extends Fragment {
     }
 
     private void processRequest(Payment payment) {
-        int PAYMENT_ACTIVITY_REQUEST_CODE = 1;
-        payment.setReference(Util.generateReference(payment.getPhone()));//transaction unique reference
-//        payment.setAccount("");
+        payment.setConsumerKey(preferenceManager.getConsumerKey());
+        payment.setConsumerSecret(preferenceManager.getConsumerSecret());
+        payment.setReference(Util.generateReference(payment.getPhone()));
 
-        ComponentName cn = new ComponentName(getContext(), "com.pesapal.pesapalandroid.PesapalPayActivity");
+        Intent intent = new Intent(getContext(), ResultActivity.class);
+        intent.putExtra("payment", new Gson().toJson(payment));
+        startActivity(intent);
 
-        Intent intent = new Intent().setComponent(cn);
-        intent.putExtra("payment", String.valueOf(payment));
-        startActivityForResult(intent, PAYMENT_ACTIVITY_REQUEST_CODE);
-    }
+        ((Activity) getContext()).overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-//        resetForm();
+        resetForm();
     }
 
     private void resetForm() {

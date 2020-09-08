@@ -270,7 +270,7 @@
                 app:layout_constraintGuide_percent="0.5" />
 
             <TextView
-                android:id="@+id/tvCurrencyGenderHome"
+                android:id="@+id/tvCurrencyHeaderHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -289,20 +289,26 @@
                 app:layout_constraintStart_toStartOf="@+id/tvTxDetailsHome"
                 app:layout_constraintTop_toBottomOf="@+id/tvTxDetailsHome" />
 
-            <Spinner
-                android:id="@+id/spCurrencyHome"
+            <TextView
+                android:id="@+id/tvCurrencyHome"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start|center_vertical"
                 android:padding="8dp"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/tvCurrencyGenderHome"
+                android:text="@string/currency"
+                android:textColor="@color/cg0"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCurrencyHeaderHome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/glAHome"
-                app:layout_constraintTop_toTopOf="@+id/tvCurrencyGenderHome" />
+                app:layout_constraintTop_toTopOf="@+id/tvCurrencyHeaderHome"  />
+
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/cdlAmountHome"
@@ -314,8 +320,8 @@
                 android:background="@drawable/v_start"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@+id/tvCurrencyGenderHome"
-                app:layout_constraintTop_toBottomOf="@+id/tvCurrencyGenderHome">
+                app:layout_constraintStart_toStartOf="@+id/tvCurrencyHeaderHome"
+                app:layout_constraintTop_toBottomOf="@+id/tvCurrencyHeaderHome">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

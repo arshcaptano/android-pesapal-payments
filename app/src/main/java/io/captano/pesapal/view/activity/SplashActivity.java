@@ -14,12 +14,16 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import io.captano.pesapal.R;
+import io.captano.pesapal.application.PreferenceManager;
+import io.captano.pesapal.util.Config;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class SplashActivity extends AppCompatActivity {
     private final Context context = this;
 
     private ImageView ivSplash;
+
+    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,12 @@ public class SplashActivity extends AppCompatActivity {
 
         Animation ivAnimation = AnimationUtils.loadAnimation(context, R.anim.splash_transition);
         ivSplash.startAnimation(ivAnimation);
+
+        // Settings defaults
+        preferenceManager = new PreferenceManager(context);
+        preferenceManager.setCurrency("KES");
+        preferenceManager.setConsumerKey(Config.CONSUMER_KEY);
+        preferenceManager.setConsumerSecret(Config.CONSUMER_SECRET);
 
         actionStart();
     }

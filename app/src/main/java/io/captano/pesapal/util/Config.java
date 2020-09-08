@@ -3,27 +3,14 @@ package io.captano.pesapal.util;
 public class Config {
     public static final String BASE_URL = "https://demo.pesapal.com/API/";
 
-    public static final String POST_PESAPAL_DIRECT_ORDER = BASE_URL + "PostPesapalDirectOrderMobile"; // PostPesapalDirectOrderV4
+    public static final String POST_PESAPAL_DIRECT_ORDER = BASE_URL + "PostPesapalDirectOrderV4";
+    public static final String POST_PESAPAL_DIRECT_ORDER_MOBILE = BASE_URL + "PostPesapalDirectOrderMobile";
+
     public static final String QUERY_PAYMENT_STATUS = BASE_URL + "QueryPaymentStatus";
     public static final String QUERY_PAYMENT_DETAILS = BASE_URL + "QueryPaymentDetails";
 
-    private static final String SOAP_ACTION = "";
-    private static final String NAMESPACE = "http://www.pesapal.com";
-    private static final String METHOD_POST_PESAPAL_DIRECT_ORDER = "PesapalDirectOrderInfo";
+    public static final String CONSUMER_KEY = "Oe8KxNKAFvN2iwj6EeMTAJtsS3IVUlt3";
+    public static final String CONSUMER_SECRET = "yu2Mpfljg5UYGlD6OBf3qRIr+WQ=";
+    private static final String CALLBACK = "https://demo.pesapal.com/api/querypaymentstatus";
 
-    // Query parameters
-    public static final String PESAPAL_NOTIFICATION_TYPE = "CHANGE";
-    public static final String OAUTH_CALLBACK = "";
-    public static final String OAUTH_NONCE = "";
-    public static final String OAUTH_SIGNATURE = "";
-    public static final String OAUTH_SIGNATURE_METHOD = "HMAC-SHA1";
-    public static final String OAUTH_TIMESTAMP = ""; // long unixTime = System.currentTimeMillis() / 1000L;
-    public static final String OAUTH_VERSION = "1.0";
-
-    public static final int CLICK_INTERVAL = 2000;
-
-    // Volley request configs
-    public static final int TIMEOUT_MS = 30000; // Milliseconds
-    public static final int RETRIES = 1; // Retries for failed requests
-    public static final float BACKOFF_MULTIPLIER = 1f; // Multiplier added for 1st failed request and so on
 }

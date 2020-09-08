@@ -3,6 +3,8 @@ package io.captano.pesapal.object;
 import java.math.BigDecimal;
 
 public class Payment {
+    public String consumerKey;
+    public String consumerSecret;
     public String reference;
     public String firstName;
     public String lastName;
@@ -11,6 +13,22 @@ public class Payment {
     public String currency;
     public BigDecimal amount;
     public String description;
+
+    public String getConsumerKey() {
+        return consumerKey;
+    }
+
+    public void setConsumerKey(String consumerKey) {
+        this.consumerKey = consumerKey;
+    }
+
+    public String getConsumerSecret() {
+        return consumerSecret;
+    }
+
+    public void setConsumerSecret(String consumerSecret) {
+        this.consumerSecret = consumerSecret;
+    }
 
     public String getReference() {
         return reference;
