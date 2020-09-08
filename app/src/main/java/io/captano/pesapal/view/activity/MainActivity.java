@@ -133,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nv_home:
 
                     return true;
+                case R.id.nv_tx_history:
+
+                    return true;
                 case R.id.nv_settings:
 
                     return true;
