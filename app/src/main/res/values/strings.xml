@@ -12,7 +12,7 @@
     <string name="home_summary">Fill in the details to make a payment using PesaPal</string>
     <string name="tx_summary_header">Transaction Summary</string>
     <string name="tx_summary_summary">A list of your most recent transactions</string>
-    <string name="result_header">Complete payment</string>
+    <string name="result_header">Complete Payment</string>
     <string name="my_details">My Details</string>
     <string name="tx_details">Transaction Details</string>
     <string name="notification">Notification</string>
@@ -28,6 +28,7 @@
     <string name="description">Payment Description</string>
 
     <string name="currency_required">Kindly select a valid currency</string>
+    <string name="required">This field is required</string>
 
     <string-array name="currency">
         <item>UGX </item>

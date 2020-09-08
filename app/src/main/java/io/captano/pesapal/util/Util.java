@@ -15,19 +15,37 @@ import androidx.appcompat.app.AlertDialog;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.Random;
+import java.util.zip.CRC32;
 
 import io.captano.pesapal.R;
 
 public class Util {
 
-    public static void vibrate(Context context, long milliSeconds/*Vibrate for x milliseconds*/) {
-        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-        assert vibrator != null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            vibrator.vibrate(VibrationEffect.createOneShot(milliSeconds, VibrationEffect.DEFAULT_AMPLITUDE));
-        else
-            // Deprecated in API 26
-            vibrator.vibrate(milliSeconds);
+
+    public static String generateReference(String phoneNumber) {
+        String time = getDateTimeNow("yyyyMMddHHmmssSSS");
+
+        return String.valueOf(randomize()).toUpperCase() + shrink(phoneNumber) + time;
+    }
+
+    public static String getDateTimeNow(String pattern) {
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.getDefault());
+        return sdf.format(Calendar.getInstance().getTime());
+    }
+
+    private static long shrink(String input) {
+        CRC32 crc = new CRC32();
+        crc.update(input.getBytes());
+        return crc.getValue();
+    }
+
+    private static char randomize() {
+        Random rnd = new Random();
+        return (char) (rnd.nextInt(26) + 'A');
     }
 
     public boolean IsInternetConnected(Context context) {

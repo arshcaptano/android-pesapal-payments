@@ -26,15 +26,10 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Set status bar icons to a dark contrast colour
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
         ivSplash = findViewById(R.id.ivSplash);
 
         Animation ivAnimation = AnimationUtils.loadAnimation(context, R.anim.splash_transition);
         ivSplash.startAnimation(ivAnimation);
-
 
         actionStart();
     }

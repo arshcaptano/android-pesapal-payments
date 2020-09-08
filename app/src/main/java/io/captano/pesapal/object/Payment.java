@@ -3,13 +3,22 @@ package io.captano.pesapal.object;
 import java.math.BigDecimal;
 
 public class Payment {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
-    private String currency;
-    private BigDecimal amount;
-    private String description;
+    public String reference;
+    public String firstName;
+    public String lastName;
+    public String email;
+    public String phone;
+    public String currency;
+    public BigDecimal amount;
+    public String description;
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
 
     public String getFirstName() {
         return firstName;

@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import io.captano.pesapal.R;
 import io.captano.pesapal.view.adapter.MainNavAdapter;
 import io.captano.pesapal.view.fragment.HomeFragment;
+import io.captano.pesapal.view.fragment.TxFragment;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         mainNavAdapter = new MainNavAdapter(getSupportFragmentManager());
 
         mainNavAdapter.addFragment(new HomeFragment());
+        mainNavAdapter.addFragment(new TxFragment());
 
         vpMain.setAdapter(mainNavAdapter);
     }
@@ -131,13 +133,16 @@ public class MainActivity extends AppCompatActivity {
         bnvMain.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nv_home:
-
+                    vpMain.setCurrentItem(0);
+                    mainNavAdapter.notifyDataSetChanged();
                     return true;
                 case R.id.nv_tx_history:
-
+                    vpMain.setCurrentItem(1);
+                    mainNavAdapter.notifyDataSetChanged();
                     return true;
                 case R.id.nv_settings:
-
+                    vpMain.setCurrentItem(2);
+                    mainNavAdapter.notifyDataSetChanged();
                     return true;
             }
 
